@@ -1,0 +1,29 @@
+{
+  "name": "3dScanner",
+  "version": "1",
+  "manifest_version": 2,
+  "permissions": ["serial","storage",{"fileSystem": ["write", "retainEntries", "directory"]}],
+  "minimum_chrome_version": "23",
+  "icons": {
+    "512":"img/icon_512.png"
+  },
+  "file_handlers": {
+    "text": {
+      "types": [
+          "text/*"
+      ]
+    },
+    "image": {
+    "types": [
+      "image/png",
+      "image/jpeg"
+      ]
+    }
+  },
+
+  "app": {
+    "background": {
+      "scripts": ["launch.js"]
+    }
+  }
+}

@@ -1,0 +1,454 @@
+#connect_box,#select_sensor_box {
+	max-width:640px;
+/* 	margin:0 auto; */
+margin-left:60px;
+	margin-top:60px;
+}
+
+#main_box {
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	overflow:scroll;
+}
+
+#sidebar {
+	border-left: 1px solid #f0f0f0;
+	padding:10px;
+	-webkit-user-select:all!important;
+	float:left;
+	width:230px;
+	height:100%;
+	position:fixed;
+	z-index:99;
+	right:0;
+	top:0;
+	overflow:scroll;
+	background:rgba(255,255,255,0.88);
+}
+
+#container,#container2 {
+	float:left;
+	height:100%;
+	width:100%;
+	overflow:scroll;
+	position:absolute;
+	z-index:1;
+	top:0;
+	left:0;
+}
+
+#container canvas,#container2 canvas {
+	position:absolute;
+	top:0;
+	left:0;
+	margin:0;
+	padding:0;
+	border:0;
+	overflow:scroll;
+}
+
+path:hover {
+	fill:red;
+}
+
+/* RESET - http://meyerweb.com/eric/tools/css/reset/ | v2.0 | 20110126 */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+menu,
+nav,
+section {
+  display: block;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* Hand cursor on clickable input elements */
+label,
+input[type="button"],
+input[type="submit"],
+input[type="image"],
+button {
+  cursor: pointer;
+}
+/* Bicubic resizing for non-native sized IMG: code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
+.ie7 img {
+  -ms-interpolation-mode: bicubic;
+}
+/* www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+textarea {
+  overflow: auto;
+}
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+/* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border: 1px solid #dddddd;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+/* Normalize monospace sizing: en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome */
+pre,
+code,
+kbd,
+samp {
+  font-family: monospace, 'Open Sans', sans-serif;
+}
+/* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
+a:hover,
+a:active {
+  outline: none;
+}
+/* Set sub, sup without affecting line-height: gist.github.com/413930 */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+sup {
+  font-size: 50%;
+  vertical-align: super;
+}
+sub {
+  font-size: 50%;
+  vertical-align: sub;
+}
+/**
+ * Variables
+ */
+/**
+ * Functions
+ */
+/**
+ * Mixins
+ */
+/**
+ * Animations
+ */
+@-webkit-keyframes spin-360 {
+  from {
+    -webkit-transform: rotate(0);
+    /* Saf3.1+, Chrome */
+  
+    -moz-transform: rotate(0);
+    /* FF3.5+ */
+  
+    -ms-transform: rotate(0);
+    /* IE9 */
+  
+    -o-transform: rotate(0);
+    /* Opera 10.5 */
+    transform: rotate(0);
+    zoom: 1;
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+    /* Saf3.1+, Chrome */
+  
+    -moz-transform: rotate(180deg);
+    /* FF3.5+ */
+  
+    -ms-transform: rotate(180deg);
+    /* IE9 */
+  
+    -o-transform: rotate(180deg);
+    /* Opera 10.5 */
+    transform: rotate(180deg);
+    zoom: 1;
+  }
+  to {
+    -webkit-transform: rotate(0);
+    /* Saf3.1+, Chrome */
+  
+    -moz-transform: rotate(0);
+    /* FF3.5+ */
+  
+    -ms-transform: rotate(0);
+    /* IE9 */
+  
+    -o-transform: rotate(0);
+    /* Opera 10.5 */
+    transform: rotate(0);
+    zoom: 1;
+  }
+}
+
+/*=======SKELETON OVERRIDE=======*/
+
+body,p,table,button{
+	font-size:14px;
+	line-height:20px;
+	font-family:sans-serif;
+}
+
+
+table td input {
+	padding:4px!important;
+	width:100%;
+	text-align:left;
+	margin:2px;
+	outline:0;
+	border:0;
+	
+
+	
+}
+
+table td {
+	border-bottom:none;
+	padding:1px;
+	text-align: center;
+	border:1px solid #ddd;
+}
+
+button {
+	padding:0 15px;
+	text-transform:none;
+	letter-spacing:normal;
+	font-size:12px;
+}
+
+input {
+	padding:4px!important;
+	margin:0!important;
+	opacity:.8;
+	color:#000!important;
+	outline:0;
+	border:0;
+}
+
+p {
+	margin-bottom:11px;
+}
+
+button {
+
+	border:none;
+	display: inline-block;
+margin: 10px 0;
+padding: 0.6em 0.618em;
+font-family: sans-serif;
+font-weight: 700;
+text-transform: uppercase;
+color: #fff;
+background: #0000ff;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+-moz-background-clip: padding;
+-webkit-background-clip: padding-box;
+background-clip: padding-box;
+-webkit-transition: all ease-in-out 0.2s;
+-moz-transition: all ease-in-out 0.2s;
+-ms-transition: all ease-in-out 0.2s;
+-o-transition: all ease-in-out 0.2s;
+transition: all ease-in-out 0.2s;	
+}
+
+
+button:hover {
+  background: #f0f0f0;
+  color:#0000ff;
+}
+
+buttons{
+	margin-top:3.874em;
+	display: block;
+}
+
+
+
+
+
+
+
+td{
+	font-size:11px;
+	text-transform: uppercase;
+}
+input{
+	font-size: 14px;
+}
+body {
+	color:#000;
+
+}
+
+hr {
+	border:0;
+	outline:0;
+	margin:30px;
+}
+
+h2, h3 {
+	margin-bottom:12px;
+}
+
+h2{
+	font-size:24px;
+}
+
+
+select {
+	width:100%;
+	
+	border:1px solid #ddd;
+	height:40px;
+	line-height:30px;
+	display:inline-block;
+padding: 1.6em 1.618em;
+	margin:10px 0;
+	margin-right:6px;
+	font-size:14px;
+	color:#000;
+	vertical-align:middle;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+}
+
+.site-title{
+	font-family: sans-serif;
+	font-size: 4em !important;
+	letter-spacing: -0.05em;
+	line-height: 1em;
+
+}
+
+.site-header {
+  margin: 0 0 1.631em;
+  padding: 2.618em 0;
+
+
+  -webkit-transition: all ease-in-out 0.2s;
+  -moz-transition: all ease-in-out 0.2s;
+  -ms-transition: all ease-in-out 0.2s;
+  -o-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+.site-header img {
+  margin: 0 0 1.618em;
+}
+.site-header h1 {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 900;
+
+}
+small{
+	font-size:12px;
+}

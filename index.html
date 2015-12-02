@@ -1,0 +1,83 @@
+<html>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script type="text/javascript" src="js/three.min.js"></script>
+    <script type="text/javascript" src="js/OBJExporter.js"></script>
+    <script type="text/javascript" src="js/Detector.js"></script>
+    <script type="text/javascript" src="js/two.min.js"></script>
+	<div id="connect_box">
+		<header class="site-header">
+
+	<a href="index.html" title="Home"><img width="132" height="132" src="img/icon_512.png"/></a>
+	<h1 class="site-title">3d Scanner</h1>
+	<h2>Point-Cloud Tool by PulsedLight Inc.</h2>
+
+		<br>
+		<h3>Arduino Connection: Choose Serial Port</h3>
+		<!-- Box for choosing the port to connect to -->
+		<select id="port_list"><option>Please Wait...</option></select><br>
+		<button id="connect_button">Connect</button> <button class="reload_app">Reload</button><br>
+		<p><small>If you don't see the serial port for your Arduino, try unplugging and replugging the USB and hitting "Reload App". This can also help if the serial port has issues during use.</small></p>
+		</header>
+	</div>
+	<div id="sidebar">
+	  <h2>Servo Controls</h2>
+	  <small>Start and stop values are in microseconds</small>
+	  <br><br>
+	  <h3>Azimuth</h3>
+	  <table>
+	    <tbody>
+	      <tr>
+	        <td>Start</td>
+	        <td>Stop</td>
+	        <td>Steps</td>
+	        <td>Delay</td>
+	      </tr>
+	      <tr>
+	        <td><input type="text" id="azStart" placeholder="Az Start" value="1000"></td>
+	        <td><input type="text" id="azEnd" placeholder="Az End" value="1500"></td>
+	        <td><input type="text" id="azSteps" placeholder="Az Steps" value="30"></td>
+	        <td><input type="text" id="azDelay" placeholder="Az Delay" value="20"></td>
+	      </tr>
+	    </tbody>
+	  </table>
+	  <br>
+	  <h3>Elevation</h3>
+	  <table>
+	    <tbody>
+	      <tr>
+	        <td>Start</td>
+	        <td>Stop</td>
+	        <td>Steps</td>
+	        <td>Delay</td>
+	      </tr>
+	      <tr>
+	        <td><input type="text" id="elStart" placeholder="El Start" value="500"></td>
+	        <td><input type="text" id="elEnd" placeholder="El End" value="1000"></td>
+	        <td><input type="text" id="elSteps" placeholder="El Steps" value="30"></td>
+	        <td><input type="text" id="elDelay" placeholder="El Delay" value="20"></td>
+	      </tr>
+	    </tbody>
+	  </table>
+	  <br>
+	  <p><button id="scanBtn">Scan Now</button> <button id="cancelBtn" class="red">Cancel Scan</button><br><button id="clearPtsBtn">Clear Scanned Points!</button></p>
+
+	    <hr>
+	  <span id="Export">
+
+	    <h2>Export</h2>
+	    <p><button id="exportCSV">CSV</button> <button id="exportPNG">PNG</button> <button id="exportOBJ">OBJ</button></p>
+	  </span>
+	  <hr>
+
+
+	  <br>
+	  <p style="position:absolute;bottom:24px;width:92%;">	  <button class="reload_app">Reload App</button><br>
+	  <small>More info @ <a href="pixelscanner.com">pixelscanner.com</a></small></p>
+	</div>
+	<div id="main_box" style="display:none;">
+	  <div id="container" ></div>
+	  <div id="container2" style="display:none;"></div>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="main.js"></script>
+</html>

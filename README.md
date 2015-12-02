@@ -1,10 +1,8 @@
 # 3d Scanner: Point-Cloud Tool by PulsedLight Inc.
 
-## Introduction
-
 // PUT VIDEO HERE!
 
-***PixelScanner*** is a point-cloud creation tool created  by Austin Meyers (AK5A) with the support of [PulsedLight, Inc.](pulsedlight3d.com) for the research and experimentation in point-based robotic/computer visualizations. Using a distance sensor, 2 servos, 2 arduinos (the second one simply provides power) a laptop and a Google Chrome Stand-alone app - point cloud data is captured and export as CSV, PNG and OBJ.
+***3d Scanner*** is a point-cloud creation tool created by [PulsedLight, Inc.](pulsedlight3d.com) for the research and experimentation in point-based robotic/computer visualizations. Using a distance sensor, 2 servos, 2 Arduinos (the second one simply provides power) a laptop and a Google Chrome Stand-alone app - point cloud data is captured and export as CSV, PNG and OBJ.
 
 ## TOC
 - [Background](#background)
@@ -18,15 +16,16 @@
 
 ## Background
 
-Robots and other autonomous machines have a variety of touch-free real-time options for "seeing" the environment around them: radar,  stero-scopic video, high resolution 3D LiDAR scanning and more. With each of these options one primary downside is the high quantity of data coming from the sensors. A robot's vision is only as strong as the algorithms that process the data from the sensors.
+Robots and other autonomous machines have a variety of touch-free real-time options for "seeing" the environment around them: radar,  stereoscopic video, high resolution 3D LiDAR scanning and more. With each of these options one primary downside is the high quantity of data coming from the sensors. A robot's vision is only as strong as the algorithms that process the data from the sensors.
 
-The hope with this project was to build a tool that would produce 3D point-cloud data and allow me (and others) to start learning more about the various data-crunching algorithms and processes already availble and to tinker with object dectection, situational awareness, etc.  
+The hope with this project was to build a tool that would produce 3D point-cloud data and allow me (and others) to start learning more about the various data-crunching algorithms and processes already available and to tinker with object detection, situational awareness, etc.  
 
-With the support of PulsedLight Inc, I've been able to create a  2 servo system using they're LIDAR-Lite v2 sensor that captures relatively high-resolution 3D points. Because of its low cost, it can be a little slow (mostly because of the servos) but it does exactly what I was hoping - it captures and exports the data I needed for experimentation with the algorithm/processing sides of robotic-vision.
+We've been able to create a  2 servo system using LIDAR-Lite v2 sensor that captures relatively high-resolution 3D points. Because of its low cost, it can be a little slow (mostly because of the servos) but it does exactly what I was hoping - it captures and exports the data I needed for experimentation with the algorithm/processing sides of robotic-vision.
 
 Here are a few samples of the output:
 
 // PUT SAMPLE IMAGES HERE
+
 More samples of exports can be viewed in Appendix A.
 
 
@@ -36,7 +35,7 @@ More samples of exports can be viewed in Appendix A.
 When you have followed the directions in "Appendix B: Installation" you simply plug the Arduinos into the laptop and run the chrome app. Once you have selected and connected to the appropriate serial ports, you will see a blank screen with a set of options for the servos and "Export" on the right hand side of the screen.
 
 ### Servo Controls
-The servo controls are set in "microseconds" and you set the start and stop angle, the number of steps between the readings and the delay between each reading. The start and stop angles are fairly self explanatory - they control where the servo starts and where it finishes reading. The number of steps is also fairly straightforward - it controls how many positions to skip between readings, for example, if the steps is set to 30 and the start is 500 the first reading will be at 500 and the second reading will be at 530. The delay control is set in milliseconds, this controls how long the servo waits at its current position, if this is too low then the servos don't seem to go to they're position very accurately, at a certain point there's no added benifit to waiting as the servos are as accurate as they will get (in my case 20ms was perfect).
+The servo controls are set in "microseconds" and you set the start and stop angle, the number of steps between the readings and the delay between each reading. The start and stop angles are fairly self explanatory - they control where the servo starts and where it finishes reading. The number of steps is also fairly straightforward - it controls how many positions to skip between readings, for example, if the steps is set to 30 and the start is 500 the first reading will be at 500 and the second reading will be at 530. The delay control is set in milliseconds, this controls how long the servo waits at its current position, if this is too low then the servos don't seem to go to they're position very accurately, at a certain point there's no added benefit to waiting as the servos are as accurate as they will get (in my case 20ms was perfect).
 
 ### False Color Imagery
 Once you have your settings input, hit "Scan now" and a false-color 2D image will be produced. Each color corresponds directly to the distance, in my case the LIDAR-Lite reads in centimeters so each value corresponds to cm readings.
@@ -49,7 +48,7 @@ The Elevation/Azimuth/Distance data is actually in radial geometry, for CSV and 
 
 #### CSV
 The CSV data is export as
-	//Azimuth Rotation, Elevation Rotation, Distance, setps between azimuth, steps between elevation
+	//Azimuth Rotation, Elevation Rotation, Distance, steps between azimuth, steps between elevation
 	1500,500,60,4,4
 In the code you can easily modify this to export whatever you need (including header rows).
 
@@ -60,7 +59,7 @@ element that draws the false-color scan. It currently includes all blank margins
 
 #### OBJ
 
-The OBJ export creates a series of cubes positioned based on the Cartesian conversion of the elevation, azimuth and distance measurments. Each cube width and height is proportional to the number of "setps" between each reading. This can be easily modified in the code.
+The OBJ export creates a series of cubes positioned based on the Cartesian conversion of the elevation, azimuth and distance measurements. Each cube width and height is proportional to the number of "steps" between each reading. This can be easily modified in the code.
 
 
 
@@ -87,7 +86,7 @@ Here is the list of hardware I used.
 - 1 x LIDAR-Lite v2 (Blue Label)
 - [2 x Servos with Pan/Tilt Kit](http://www.robotshop.com/en/lynxmotion-pan-and-tilt-kit-aluminium2.html "Lynxmotion Pan and Tilt Kit w/ 2 Servos (via Robotshop)")
 - 2 x Arduinos (one is exclusively for power and could easily be replaced with a power supply), I used 1 x UNO rev3 and one Nano for power
-- A mount for the servos (I used a[PanaVise Model 201 "Junior" Miniature Vise](http://www.amazon.com/gp/product/B000B61D22/ref=s9_al_bw_g328_i2))
+- A mount for the servos (I used a [PanaVise Model 201 "Junior" Miniature Vise](http://www.amazon.com/gp/product/B000B61D22/ref=s9_al_bw_g328_i2))
 - A camera tripod for positioning the scanner
 - Electrical tape
 - Two long USB cables!
@@ -120,20 +119,21 @@ Whenever you make changes to the Arduino code and attempt to commit them to the 
 ## Appendix C: Tweaking the Code
 I will try my best to keep the code as documented as I can, but here are a few features people may want to tweak.
 
-**Modify for sensor that pans upwards (i.e. oppositite of default):** BLAH
+**Modify for sensor that pans upwards (i.e. opposite of default):** BLAH
 
 **Arduino: Modifying for other sensors: ** Look at function .... BLAH
 
 **Chrome: Modify CSV Export:** At line ##### you can tweak this
 
-**Chrome: Modify OBJ Export:** You'll definately want to check out Three.js
+**Chrome: Modify OBJ Export:** You'll definitely want to check out Three.js
 
 ## Appendix D: Libraries Used
 ### Chrome App
-- Two.js
-- Three.js
-- Chrome Serial
-- Jquery
+- [Two.js](http://jonobr1.github.io/two.js/)
+- [Three.js](http://threejs.org)
+- [Chrome App Samples (specifically "serial")](https://github.com/GoogleChrome/chrome-app-samples)
+- [Jquery](http://jquery.com)
+
 ### Arduino
-- Servos
-- LIDARLite
+- [Servos](https://www.arduino.cc/en/Reference/Servo)
+- [LIDARLite](https://github.com/PulsedLight3D/LIDARLite_v2_Arduino_Library)

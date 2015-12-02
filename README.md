@@ -7,11 +7,11 @@
 ***PixelScanner*** is a point-cloud creation tool created  by Austin Meyers (AK5A) with the support of [PulsedLight, Inc.](pulsedlight3d.com) for the research and experimentation in point-based robotic/computer visualizations. Using a distance sensor, 2 servos, 2 arduinos (the second one simply provides power) a laptop and a Google Chrome Stand-alone app - point cloud data is captured and export as CSV, PNG and OBJ.
 
 ## TOC
-- [Background](#Background)
+- [Background](#background)
 - [How it Works](#how-it-works)
-- [What's Next? How Can you Help!](#Whats-Next-How-can-you-help)
-- [Appendix A: Scanner Output](#appendix-a-scanner-output)
-- [Appendix B: Installation](#appendix-b-installation)
+- [What's Next? How Can you Help!](#whats-next-how-can-you-help)
+- [Appendix A: Scanner Output](#appendix-a-scan-output)
+- [Appendix B: Installation](#appendix-b-setup--installation)
 - [Appendix C: Tweaking The Code](#appendix-c-tweaking-the-code)
 - [Appendix D: Libraries Used](#appendix-d-libraries-used)
 
@@ -137,22 +137,3 @@ I will try my best to keep the code as documented as I can, but here are a few f
 ### Arduino
 - Servos
 - LIDARLite
-
-
-## A note on communication/issues
-I'm really excited to release this to the open-source community, the input, suggestions and contributions I've received on past projects has been amazing and I look forward to that same thing happening here!
-
-HOWEVER! I will not be providing any "customer support". If you have a question, ask it, I will do my best to respond, but because of limited time, I will not be able to walk anyone through process of setting up Arduino, Chrome Extensions, etc. If your issue doesn't directly contribute to improving the project itself, or deals only with an edge-case bug I will do my best to help but will likely close the issue without spending too much time on it. This is primarily shared research and not a teaching or specific user-issue debugging platform.
-
-That said, I'm human so if I upset you, please accept my apologies in advance and know that was not my intention. I know that with courteous and succinct discussion we open the door for each of us to admit our mistakes - accusations and ego cause entrenchment... lets stay humble and understanding. Thank you for giving me the opportunity to express this in advance, please respect.
-
-
-----
-
-PROJECT PAGE
-
-**Project Summary:** P01nt5 is an ongoing research project/experiment by Austin Meyers (AK5A) focused on "goldilocks" algorithms/processes for point based robotic/computer visualizations. The work focuses on systems that produce some version of [X,Y,Z](#) or [azimuth, elevation, depth](#) outputs as opposed to video (photographic, infrared, etc). For more information on the project visit
-
-
-### POINT-based vs Photo graphic
-I'm sure I could get into an good old-fashioned flame-war if I took one side or another, the reason for my focus on point-based systems is my background working for PulsedLight Inc and specifically my work with the LIDAR-Lite distance sensor.

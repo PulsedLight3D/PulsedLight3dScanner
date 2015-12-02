@@ -7,13 +7,13 @@
 ***PixelScanner*** is a point-cloud creation tool created  by Austin Meyers (AK5A) with the support of [PulsedLight, Inc.](pulsedlight3d.com) for the research and experimentation in point-based robotic/computer visualizations. Using a distance sensor, 2 servos, 2 arduinos (the second one simply provides power) a laptop and a Google Chrome Stand-alone app - point cloud data is captured and export as CSV, PNG and OBJ.
 
 ## TOC
-- Background
-- How it Works
-- What's Next? How Can you Help!
-- Appendix A: Scanner Output
-- Appendix B: Installation
-- Appendix C: Tweaking The Code
-- Appendix D: Libraries Used
+- [Background](Background)
+- [How it Works](how-it-works)
+- [What's Next? How Can you Help!](Whats-Next-How-can-you-help)
+- [Appendix A: Scanner Output](appendix-a-scanner-output)
+- [Appendix B: Installation](appendix-b-installation)
+- [Appendix C: Tweaking The Code](appendix-c-tweaking-the-code)
+- [Appendix D: Libraries Used](appendix-d-libraries-used)
 
 
 ## Background

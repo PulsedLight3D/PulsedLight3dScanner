@@ -32,6 +32,7 @@ More samples of exports can be viewed in [Appendix A](#appendix-a-scan-output).
 
 
 
+
 ## How it Works
 
 
@@ -139,9 +140,24 @@ The CSV data is export as
 
 #### Modifying the Export
 
-**Chrome: Modify CSV Export:** At line ##### you can tweak this
+In the code you can easily modify this to export whatever you need (including header rows), by changing this function and altering the "blob" variable:
 
-In the code you can easily modify this to export whatever you need (including header rows).
+```javascript
+$('#exportCSV').click(function() {
+	// To add a header row to CSV append the header to the being of
+	// the "blob" variable
+	var config = {
+		type: 'saveFile',
+		suggestedName: event.timeStamp + '.csv'
+	};
+	chrome.fileSystem.chooseEntry(config, function(writableEntry) {
+		var blobSave = new Blob([blob], {
+			type: 'text/plain'
+		});
+		writeFileEntry(writableEntry, blobSave, function(e) {});
+	});
+});
+```
 
 
 

@@ -228,8 +228,9 @@ clearPtsBtn.onclick = function() {
 	two.clear();
 }
 
-var saveFileButton = document.querySelector('#exportCSV');
-saveFileButton.addEventListener('click', function(e) {
+$('#exportCSV').click(function() {
+	// To add a header row to CSV append the header to the being of
+	// the "blob" variable
 	var config = {
 		type: 'saveFile',
 		suggestedName: event.timeStamp + '.csv'
@@ -241,6 +242,7 @@ saveFileButton.addEventListener('click', function(e) {
 		writeFileEntry(writableEntry, blobSave, function(e) {});
 	});
 });
+
 $('#exportPNG').click(function() {
 	var canvas = two.renderer.domElement;
 	var dataURL = canvas.toDataURL('image/png');

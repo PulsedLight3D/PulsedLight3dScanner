@@ -1,6 +1,7 @@
 # 3d Scanner: Point-Cloud Tool by PulsedLight Inc.
 
 ![](readmeAssets/chair/chair_screenshot.png)
+![](readmeAssets/img/scanner.jpg)
 
 ***3d Scanner*** is a point-cloud creation tool created by [PulsedLight, Inc.](pulsedlight3d.com) for the research and experimentation in point-based robotic/computer visualizations. Using a distance sensor, 2 servos, 2 Arduinos (the second one simply provides power) a laptop and a Google Chrome Stand-alone app - point cloud data is captured and export as CSV, PNG and OBJ.
 

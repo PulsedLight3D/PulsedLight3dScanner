@@ -11,8 +11,7 @@
 - [What's Next? How Can you Help!](#whats-next-how-can-you-help)
 - [Appendix A: Scanner Output](#appendix-a-scan-output)
 - [Appendix B: Installation](#appendix-b-setup--installation)
-- [Appendix C: Tweaking The Code](#appendix-c-tweaking-the-code)
-- [Appendix D: Libraries Used](#appendix-d-libraries-used)
+- [Appendix C: Libraries Used](#appendix-c-libraries-used)
 
 
 ## Introduction
@@ -33,6 +32,17 @@ More samples of exports can be viewed in [Appendix A](#appendix-a-scan-output).
 
 
 ## How it Works
+
+
+**Modify for sensor that pans upwards (i.e. opposite of default):** BLAH
+
+**Arduino: Modifying for other sensors: ** Look at function .... BLAH
+
+**Chrome: Modify CSV Export:** At line ##### you can tweak this
+
+**Chrome: Modify OBJ Export:** You'll definitely want to check out Three.js
+
+
 When you have followed the directions in "[Appendix B: Installation](#appendix-b-setup--installation)" you simply plug the Arduinos into the laptop and run the chrome app. Once you have selected and connected to the appropriate serial ports, you will see a blank screen with a set of options for the servos and "Export" on the right hand side of the screen.
 
 ### Servo Controls
@@ -148,20 +158,7 @@ Whenever you make changes to the Arduino code and attempt to commit them to the 
 
 ----
 
-## Appendix C: Tweaking the Code
-I will try my best to keep the code as documented as I can, but here are a few features people may want to tweak.
-
-**Modify for sensor that pans upwards (i.e. opposite of default):** BLAH
-
-**Arduino: Modifying for other sensors: ** Look at function .... BLAH
-
-**Chrome: Modify CSV Export:** At line ##### you can tweak this
-
-**Chrome: Modify OBJ Export:** You'll definitely want to check out Three.js
-
-----
-
-## Appendix D: Libraries Used
+## Appendix C: Libraries Used
 ### Chrome App
 - [Two.js](http://jonobr1.github.io/two.js/)
 - [Three.js](http://threejs.org)

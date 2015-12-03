@@ -1,10 +1,3 @@
-Last steps
-
-- Proofread, spelling, voice (I-> We)
-- Make sure the name is Pulsed Light 3d Scanner everywhere
-- Make sure "NaN" isn't part of OBJ export
-- Walk through install process and make sure there's nothing wrong.
-
 # PulsedLight 3d Scanner: Point-Cloud Tool
 
 ![](readmeAssets/img/coverShot.png)
@@ -223,7 +216,7 @@ Here is the list of hardware I used.
 #### Arduino Setup
 ![](readmeAssets/img/3dScanner_bb.png)
 
-To install the Arduino software, open "arduino/PulsedLight3dScanner/PulsedLight3dScanner.ino" and install it to the main Arduino.
+To install the Arduino software, open "arduino/PulsedLight3dScanner/PulsedLight3dScanner.ino" and install it to the main Arduino. You will need to [install the "LIDARLite" Arduino library](https://github.com/PulsedLight3D/LIDARLite_v2_Arduino_Library).
 
 #### Hardware Setup
 

@@ -1,8 +1,8 @@
 // PulsedLight 3d Scanner main.js
 //------------------------------------------------------------------------------
 // Contents:
-// - Serial functions
 // - Variables
+// - Serial functions
 // - Serial communications read loop
 // - Button functions
 // - 2D functions
@@ -12,6 +12,40 @@
 // Functions to modify:
 // - Around line 340 starts the 3d init() function where the 3d geometry is
 //	 drawn, edit this to tweak the 3d output.
+
+// Variables
+//------------------------------------------------------------------------------
+
+// If you sensor is hanging down, this should be 4500, if it is right side up,
+// set to zero. This sets a value in the main serial loop
+var invertedSensorAdjustment = 4500;
+
+// Constants
+const serial = chrome.serial; /* Interprets an ArrayBuffer as UTF-8 encoded string data. */
+const storage = chrome.storage.local;
+const DEVICE_KEY = 'serialDevice';
+
+var sensorBox = false;
+var mainBox = false;
+var calibrateLeft;
+var calibrateRight;
+var scalerValue = 1;
+var positionValue = 0;
+var mode = 0;
+var blob = '';
+
+var distanceValue;
+var points = new Array();
+var scaler = 0.5;
+var minRange = 0;
+var maxRange = 0;
+var rangeFactor = 0;
+var azimuthInt = 0;
+var elevationInt = 0;
+var distanceInt = 0;
+var azimuthStepsInt = 0;
+var elevationStepsInt = 0;
+
 
 // Serial functions
 //------------------------------------------------------------------------------
@@ -110,38 +144,6 @@ connection.onConnect.addListener(function() {
 	sensorBox == true;
 });
 
-// Variables
-//------------------------------------------------------------------------------
-
-// If you sensor is hanging down, this should be 4500, if it is right side up,
-// set to zero. This sets a value in the main serial loop
-var invertedSensorAdjustment = 4500;
-
-// Constants
-const serial = chrome.serial; /* Interprets an ArrayBuffer as UTF-8 encoded string data. */
-const storage = chrome.storage.local;
-const DEVICE_KEY = 'serialDevice';
-
-var sensorBox = false;
-var mainBox = false;
-var calibrateLeft;
-var calibrateRight;
-var scalerValue = 1;
-var positionValue = 0;
-var mode = 0;
-var blob = '';
-
-var distanceValue;
-var points = new Array();
-var scaler = 0.5;
-var minRange = 0;
-var maxRange = 0;
-var rangeFactor = 0;
-var azimuthInt = 0;
-var elevationInt = 0;
-var distanceInt = 0;
-var azimuthStepsInt = 0;
-var elevationStepsInt = 0;
 
 
 // Serial communications read loop, Read all the data from the arduino

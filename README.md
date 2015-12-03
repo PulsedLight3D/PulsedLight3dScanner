@@ -5,7 +5,7 @@
 ***3d Scanner*** is a point-cloud creation tool created by [PulsedLight, Inc.](pulsedlight3d.com) for the research and experimentation in point-based robotic/computer visualizations. Using a distance sensor, 2 servos, 2 Arduinos (the second one simply provides power) a laptop and a Google Chrome Stand-alone app - point cloud data is captured and export as CSV, PNG and OBJ.
 
 ## TOC
-- [Background](#background)
+- [Introduction](#introduction)
 - [How it Works](#how-it-works)
 - [What's Next? How Can you Help!](#whats-next-how-can-you-help)
 - [Appendix A: Scanner Output](#appendix-a-scan-output)
@@ -14,7 +14,7 @@
 - [Appendix D: Libraries Used](#appendix-d-libraries-used)
 
 
-## Background
+## Introduction
 
 Robots and other autonomous machines have a variety of touch-free real-time options for "seeing" the environment around them: radar,  stereoscopic video, high resolution 3D LiDAR scanning and more. With each of these options one primary downside is the high quantity of data coming from the sensors. A robot's vision is only as strong as the algorithms that process the data from the sensors.
 
@@ -26,13 +26,13 @@ Here are a few samples of the output:
 
 // PUT SAMPLE IMAGES HERE
 
-More samples of exports can be viewed in Appendix A.
+More samples of exports can be viewed in [Appendix A](#appendix-a-scan-output).
 
 
 
 
 ## How it Works
-When you have followed the directions in "Appendix B: Installation" you simply plug the Arduinos into the laptop and run the chrome app. Once you have selected and connected to the appropriate serial ports, you will see a blank screen with a set of options for the servos and "Export" on the right hand side of the screen.
+When you have followed the directions in "[Appendix B: Installation](#appendix-b-setup--installation)" you simply plug the Arduinos into the laptop and run the chrome app. Once you have selected and connected to the appropriate serial ports, you will see a blank screen with a set of options for the servos and "Export" on the right hand side of the screen.
 
 ### Servo Controls
 The servo controls are set in "microseconds" and you set the start and stop angle, the number of steps between the readings and the delay between each reading. The start and stop angles are fairly self explanatory - they control where the servo starts and where it finishes reading. The number of steps is also fairly straightforward - it controls how many positions to skip between readings, for example, if the steps is set to 30 and the start is 500 the first reading will be at 500 and the second reading will be at 530. The delay control is set in milliseconds, this controls how long the servo waits at its current position, if this is too low then the servos don't seem to go to they're position very accurately, at a certain point there's no added benefit to waiting as the servos are as accurate as they will get (in my case 20ms was perfect).
@@ -48,13 +48,17 @@ The Elevation/Azimuth/Distance data is actually in radial geometry, for CSV and 
 
 #### CSV
 The CSV data is export as
+```csv
 	//Azimuth Rotation, Elevation Rotation, Distance, steps between azimuth, steps between elevation
 	1500,500,60,4,4
+```
 In the code you can easily modify this to export whatever you need (including header rows).
 
 #### PNG
 The PNG export is simply the export of the
+```html
 	<canvas></canvas>
+```
 element that draws the false-color scan. It currently includes all blank margins.
 
 #### OBJ
@@ -66,10 +70,7 @@ The OBJ export creates a series of cubes positioned based on the Cartesian conve
 
 ## What's Next? How can you help!?
 Be sure to check back periodically as this is very much a work-in-progress. Some of the things on the list...
-1. Clean up the code
-	- Add header row to CSV
-	- Clean up margins in PNG export
-	- Finish Documenting the code
+1. Finish Documenting the code
 2. Export 3D Meshes
 3. Situational Awareness:  The goal here is the ability to take two scans from different positions, and have the scanner recognize its two positions relative to one another and the scanned environment
 
@@ -77,6 +78,7 @@ If anyone has any ideas or code to contribute to this project, please do a pull 
 
 ***NOTE****:  Concerning troubleshooting! If you have a question, ask it, I will do my best to respond, but because of limited time, I will not be able to walk anyone through process of setting up Arduino, Chrome Extensions, etc. *
 
+----
 
 ## Appendix A: Scan Output
 
@@ -84,14 +86,14 @@ If anyone has any ideas or code to contribute to this project, please do a pull 
 #### Parts List
 Here is the list of hardware I used.
 - 1 x LIDAR-Lite v2 (Blue Label)
-- [2 x Servos with Pan/Tilt Kit](http://www.robotshop.com/en/lynxmotion-pan-and-tilt-kit-aluminium2.html "Lynxmotion Pan and Tilt Kit w/ 2 Servos (via Robotshop)")
+- [2 x Servos with Pan/Tilt Kit via Robotshop](http://www.robotshop.com/en/lynxmotion-pan-and-tilt-kit-aluminium2.html "Lynxmotion Pan and Tilt Kit w/ 2 Servos (via Robotshop)")
 - 2 x Arduinos (one is exclusively for power and could easily be replaced with a power supply), I used 1 x UNO rev3 and one Nano for power
 - A mount for the servos (I used a [PanaVise Model 201 "Junior" Miniature Vise](http://www.amazon.com/gp/product/B000B61D22/ref=s9_al_bw_g328_i2))
 - A camera tripod for positioning the scanner
 - Electrical tape
 - Two long USB cables!
 #### Arduino Setup
-![](PixelScanner_bb.png)
+![](readmeImg/3dScanner_bb.png)
 #### Hardware Setup
 
 Below you'll see a few pictures of the fully assembled "rig". I let the PanaVise hold the servo/sensor assembly and zip-tied the arduinos to the top of the PanaVise. I used electrical tape to attach the PanaVise to the tripod.

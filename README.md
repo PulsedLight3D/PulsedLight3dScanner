@@ -1,8 +1,8 @@
-# 3d Scanner: Point-Cloud Tool by PulsedLight Inc.
+# PulsedLight 3d Scanner: Point-Cloud Tool
 
 ![](readmeAssets/img/coverShot.png)
 
-***3d Scanner*** is a point-cloud creation tool created by [PulsedLight, Inc.](pulsedlight3d.com) for the research and experimentation in point-based robotic/computer visualizations. Using a distance sensor, 2 servos, 2 Arduinos (the second one simply provides power) a laptop and a Google Chrome Stand-alone app - point cloud data is captured and export as CSV, PNG and OBJ.
+***PulsedLight 3d Scanner*** is a point-cloud creation tool created by [PulsedLight, Inc.](pulsedlight3d.com) for the research and experimentation in point-based robotic/computer visualizations. Using a distance sensor, 2 servos, 2 Arduinos (the second one simply provides power) a laptop and a Google Chrome Stand-alone app - point cloud data is captured and export as CSV, PNG and OBJ.
 
 **Contents**
 
@@ -25,13 +25,7 @@ We've been able to create a  2 servo system using LIDAR-Lite v2 sensor that capt
 
 Here are a couple samples of the output (and a photo of the scanned scene):
 
-![](readmeAssets/chair/chair_crop.png)
-*PNG output*
-![](readmeAssets/chair/chair3d.jpg)
-*3D OBJ export, rendered in 3d modeling software*
-![](readmeAssets/chair/chair_setup.jpg)
-*Photo of scene being scanned*
-
+![](readmeAssets/img/scanSample.jpg)
 
 More samples of exports can be viewed in [Appendix A](#appendix-a-scan-output).
 

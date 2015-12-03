@@ -1,5 +1,5 @@
 {
-  "name": "3dScanner",
+  "name": "PulsedLight3dScanner",
   "version": "1",
   "manifest_version": 2,
   "permissions": ["serial","storage",{"fileSystem": ["write", "retainEntries", "directory"]}],

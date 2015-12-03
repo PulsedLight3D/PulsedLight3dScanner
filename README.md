@@ -33,6 +33,7 @@ Here are a couple samples of the output (and a photo of the scanned scene):
 ![](readmeAssets/chair/chair_setup.jpg)
 *Photo of scene being scanned*
 
+
 More samples of exports can be viewed in [Appendix A](#appendix-a-scan-output).
 
 
@@ -89,6 +90,30 @@ If anyone has any ideas or code to contribute to this project, please do a pull 
 ----
 
 ## Appendix A: Scan Output
+### Chair
+
+![](readmeAssets/chair/chair_crop.png)
+*PNG output*
+![](readmeAssets/chair/chair3d.jpg)
+*3D OBJ export, rendered in 3d modeling software*
+![](readmeAssets/chair/chair_setup.jpg)
+*Photo of scene being scanned*
+#### Export files
+- [Chair OBJ](readmeAssets/chair/chair.obj)
+- [Chair PNG](readmeAssets/chair/chair.png)
+- [Chair CSV](readmeAssets/chair/chair.csv)
+
+### Backdoor
+![](readmeAssets/backdoor/backdoor_crop.png)
+*PNG output*
+![](readmeAssets/backdoor/backdoor3d.jpg)
+*3D OBJ export, rendered in 3d modeling software*
+![](readmeAssets/backdoor/backdoor_setup.jpg)
+*Photo of scene being scanned*
+#### Export files
+- [Backdoor OBJ](readmeAssets/backdoor/backdoor.obj)
+- [Backdoor PNG](readmeAssets/backdoor/backdoor.png)
+- [Backdoor CSV](readmeAssets/backdoor/backdoor.csv)
 
 ## Appendix B: Setup & Installation
 #### Parts List

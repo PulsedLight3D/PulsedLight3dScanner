@@ -108,6 +108,8 @@ If anyone has any ideas or code to contribute to this project, please do a pull 
 - [Backdoor PNG](readmeAssets/backdoor/backdoor.png)
 - [Backdoor CSV](readmeAssets/backdoor/backdoor.csv)
 
+----
+
 ## Appendix B: Setup & Installation
 #### Parts List
 Here is the list of hardware I used.
@@ -144,6 +146,8 @@ Whenever you make updates to the Chrome code while running the app, you will nee
 #### Hacking the Arduino Code
 Whenever you make changes to the Arduino code and attempt to commit them to the Arduino while running the app, the Arduino and Chrome softwares will compete for the serial connection to the Arduino hardware. Typically it is best to close the Chrome app before attempting to upload code to the Arduino  via the Arduino IDE. Once the upload is complete you can relaunch the Chrome app and connect as usual.
 
+----
+
 ## Appendix C: Tweaking the Code
 I will try my best to keep the code as documented as I can, but here are a few features people may want to tweak.
 
@@ -154,6 +158,8 @@ I will try my best to keep the code as documented as I can, but here are a few f
 **Chrome: Modify CSV Export:** At line ##### you can tweak this
 
 **Chrome: Modify OBJ Export:** You'll definitely want to check out Three.js
+
+----
 
 ## Appendix D: Libraries Used
 ### Chrome App

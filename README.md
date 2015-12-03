@@ -1,3 +1,10 @@
+Last steps
+
+- Proofread, spelling, voice (I-> We)
+- Make sure the name is Pulsed Light 3d Scanner everywhere
+- Make sure "NaN" isn't part of OBJ export
+- Walk through install process and make sure there's nothing wrong.
+
 # PulsedLight 3d Scanner: Point-Cloud Tool
 
 ![](readmeAssets/img/coverShot.png)
@@ -10,7 +17,7 @@
 - [How it Works](#how-it-works)
 - [What's Next? How Can you Help!](#whats-next-how-can-you-help)
 - [Appendix A: Scanner Output](#appendix-a-scan-output)
-- [Appendix B: Installation](#appendix-b-setup--installation)
+- [Appendix B: Setup & Installation](#appendix-b-setup--installation)
 - [Appendix C: Libraries Used](#appendix-c-libraries-used)
 
 

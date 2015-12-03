@@ -31,16 +31,8 @@ More samples of exports can be viewed in [Appendix A](#appendix-a-scan-output).
 
 
 
+
 ## How it Works
-
-
-**Modify for sensor that pans upwards (i.e. opposite of default):** BLAH
-
-**Arduino: Modifying for other sensors: ** Look at function .... BLAH
-
-**Chrome: Modify CSV Export:** At line ##### you can tweak this
-
-**Chrome: Modify OBJ Export:** You'll definitely want to check out Three.js
 
 
 When you have followed the directions in "[Appendix B: Installation](#appendix-b-setup--installation)" you simply plug the Arduinos into the laptop and run the chrome app. Once you have selected and connected to the appropriate serial ports, you will see a blank screen with a set of options for the servos and "Export" on the right hand side of the screen.
@@ -48,33 +40,108 @@ When you have followed the directions in "[Appendix B: Installation](#appendix-b
 ### Servo Controls
 The servo controls are set in "microseconds" and you set the start and stop angle, the number of steps between the readings and the delay between each reading. The start and stop angles are fairly self explanatory - they control where the servo starts and where it finishes reading. The number of steps is also fairly straightforward - it controls how many positions to skip between readings, for example, if the steps is set to 30 and the start is 500 the first reading will be at 500 and the second reading will be at 530. The delay control is set in milliseconds, this controls how long the servo waits at its current position, if this is too low then the servos don't seem to go to they're position very accurately, at a certain point there's no added benefit to waiting as the servos are as accurate as they will get (in my case 20ms was perfect).
 
-### False Color Imagery
+#### Modifying the Servo Controls
+
+If you sensor is hanging down like in the pictures, there's no need to modify anything. If however you'd rather it pivot upwards, you'll need to modify the "invertedSensorAdjustment" varible around line 118 in "main.js":
+
+```javascript
+// If you sensor is hanging down, this should be 4500, if it is right side up,
+// set to zero. This sets a value in the main serial loop
+var invertedSensorAdjustment = 4500;
+```
+
+### Changing/Modifying the Distance Sensor
+
+Currently the Arduino software just works with PulsedLight's LIDAR-Lite but it can be modified. In "arduino/PulsedLight3dScanner/PulsedLight3dScanner.ino" around line 53 modify the contents of getDistance() for whatever sensor you'd like to use:
+
+```c++
+int getDistance(){
+    int distance = 0;
+     distance = myLidarLite.distance();
+    return distance;  
+}
+```
+
+
+
+### PNG
+
+#### False Color Imagery
 Once you have your settings input, hit "Scan now" and a false-color 2D image will be produced. Each color corresponds directly to the distance, in my case the LIDAR-Lite reads in centimeters so each value corresponds to cm readings.
 
 The color is encoded using the standard RGB hex that is common in HTML. The color "Blue" looks like this #0000FF, which breaks down as Red = 0, Green = 0 and Blue = 255 (decimal). This would correspond to a reading of 255cm with the LIDAR-Lite. If we read 256cm the hex code would be #000100 (R = 0, G=1 (decimal), B = 0). In our example 255cm will be bright blue and 256 will be virtually black. For more information on the RGB color see this section of the wikipedia article on RGB: [https://en.wikipedia.org/wiki/RGB\_color\_model#Colors\_in\_web-page\_design](https://en.wikipedia.org/wiki/RGB_color_model#Colors_in_web-page_design)
 
-### Export (CSV, PNG, OBJ)
+#### PNG Export
 
-The Elevation/Azimuth/Distance data is actually in radial geometry, for CSV and PNG exports, this is preserved. In the OBJ export we actually convert the points to Cartesian geometry.
+The PNG export is simply the export of the
 
-#### CSV
+```html
+<canvas></canvas>
+```
+
+element that draws the false-color scan. It currently includes all blank margins (canvas size is 4000x4000). The pixels are plotted according to the microseconds, so if you scan from 500-1000 you will have blank margin from 0-499 and from 1001-4000.
+
+
+### 3D Export (OBJ)
+
+The OBJ export creates a series of cubes positioned based on the Cartesian conversion of the elevation, azimuth and distance measurements. Each cube width and height is proportional to the number of "steps" between each reading. This can be easily modified in the code.
+
+#### Modifying the export
+Around line 337 in "main.js" the three.js init() function starts, if you modify the contents of the "array.forEach" you can create different types of 3d export.
+
+Here is the function as is:
+
+```javascript
+function init() {
+	var array = CSVToArray(blob);
+	array.forEach(function(entry) {
+		if(!isNaN(entry[0]) || !isNaN(entry[1]) || !isNaN(entry[2])){
+			var radius = entry[2];
+			var azimuth = entry[0];
+			var elevation = entry[1];
+			// Convert radial points to Cartesian points
+			var elevation2 = ((90 - ((elevation - 500) * 0.09)) / 90) * (Math.PI / 2);
+			var azimuth2 = ((90 - ((azimuth - 1000) * 0.09)) / 90) * (Math.PI / 2);
+			var myX = (radius * Math.sin(elevation2) * Math.cos(azimuth2));
+			var myZ = (radius * Math.sin(elevation2) * Math.sin(azimuth2));
+			var myY = -(radius * Math.cos(elevation2));
+			// End radial->Cartesian conversion
+
+			// Use this line if you want the size of the cubes to be a function of the
+			// steps between points
+			// var cubeSize = ((entry[3] + entry[4]) / 2) * (elevation2 / elevation);
+			var cubeSize = 2;
+			var geometry2 = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+			var mesh2 = new THREE.Mesh(geometry2, material);
+			mesh2.position.x = myX;
+			mesh2.position.z = myZ;
+			mesh2.position.y = myY;
+			scene.add(mesh2);
+		}
+	});
+	container = document.getElementById('container2');
+	container.appendChild(renderer.domElement);
+	window.addEventListener('resize', onWindowResize, false);
+	animate();
+}
+```
+
+This is the function to modify, if points, spheres or a mesh were desired instead of cubes.
+
+
+### CSV Export
 The CSV data is export as
+
 ```csv
 //Azimuth Rotation, Elevation Rotation, Distance, steps between azimuth, steps between elevation
 1500,500,60,4,4
 ```
+
+#### Modifying the Export
+
+**Chrome: Modify CSV Export:** At line ##### you can tweak this
+
 In the code you can easily modify this to export whatever you need (including header rows).
-
-#### PNG
-The PNG export is simply the export of the
-```html
-<canvas></canvas>
-```
-element that draws the false-color scan. It currently includes all blank margins (canvas size is 4000x4000). The pixels are plotted according to the microseconds, so if you scan from 500-1000 you will have blank margin from 0-499 and from 1001-4000.
-
-#### OBJ
-
-The OBJ export creates a series of cubes positioned based on the Cartesian conversion of the elevation, azimuth and distance measurements. Each cube width and height is proportional to the number of "steps" between each reading. This can be easily modified in the code.
 
 
 
@@ -132,6 +199,9 @@ Here is the list of hardware I used.
 - Two long USB cables!
 #### Arduino Setup
 ![](readmeAssets/img/3dScanner_bb.png)
+
+To install the Arduino software, open "arduino/PulsedLight3dScanner/PulsedLight3dScanner.ino" and install it to the main Arduino.
+
 #### Hardware Setup
 
 Below you'll see a few pictures of the fully assembled "rig". I let the PanaVise hold the servo/sensor assembly and zip-tied the arduinos to the top of the PanaVise. I used electrical tape to attach the PanaVise to the tripod.

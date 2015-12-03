@@ -1,12 +1,12 @@
 // PulsedLight 3d Scanner main.js
 //------------------------------------------------------------------------------
 // Contents:
+// - Serial functions
 // - Variables
 // - Serial communications read loop
 // - Button functions
 // - 2D functions
 // - 3D functions
-// - Serial functions
 // - Supporting functions
 //
 // Functions to modify:
@@ -341,12 +341,17 @@ function init() {
 			var radius = entry[2];
 			var azimuth = entry[0];
 			var elevation = entry[1];
+			// Convert radial points to Cartesian points
 			var elevation2 = ((90 - ((elevation - 500) * 0.09)) / 90) * (Math.PI / 2);
 			var azimuth2 = ((90 - ((azimuth - 1000) * 0.09)) / 90) * (Math.PI / 2);
 			var myX = (radius * Math.sin(elevation2) * Math.cos(azimuth2));
 			var myZ = (radius * Math.sin(elevation2) * Math.sin(azimuth2));
 			var myY = -(radius * Math.cos(elevation2));
-			//var cubeSize = ((entry[3] + entry[4]) / 2) * (elevation2 / elevation);
+			// End radial->Cartesian conversion
+
+			// Use this line if you want the size of the cubes to be a function of the
+			// steps between points
+			// var cubeSize = ((entry[3] + entry[4]) / 2) * (elevation2 / elevation);
 			var cubeSize = 2;
 			var geometry2 = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
 			var mesh2 = new THREE.Mesh(geometry2, material);

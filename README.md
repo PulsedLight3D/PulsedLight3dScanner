@@ -222,7 +222,7 @@ To install the Arduino software, open "arduino/PulsedLight3dScanner/PulsedLight3
 
 Below you'll see a few pictures of the fully assembled "rig". I let the PanaVise hold the servo/sensor assembly and zip-tied the arduinos to the top of the PanaVise. I used electrical tape to attach the PanaVise to the tripod.
 
-***NOTE*** *: I chose to hang the sensor down from the vice grip as show in the image below (if you want to allow the pan head to pan upwards, you'll need to modify the code as outlined in Appendix C).*
+***NOTE*** *: I chose to hang the sensor down from the vice grip as show in the image below (if you want to allow the pan head to pan upwards, you'll need to modify the code as outlined in ["How it works: Modifying the Servo Controls"](#modifying-the-servo-controls)).*
 
 ### Software
 The software side is relatively straight forward:

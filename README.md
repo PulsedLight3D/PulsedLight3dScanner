@@ -25,7 +25,8 @@ We've been able to create a  2 servo system using LIDAR-Lite v2 sensor that capt
 
 Here are a few samples of the output:
 
-// PUT SAMPLE IMAGES HERE
+![](readmeAssets/chair/chair_crop.png)
+![](readmeAssets/chair/chair3d.png)
 
 More samples of exports can be viewed in [Appendix A](#appendix-a-scan-output).
 
@@ -95,7 +96,7 @@ Here is the list of hardware I used.
 - Electrical tape
 - Two long USB cables!
 #### Arduino Setup
-![](readmeImg/3dScanner_bb.png)
+![](readmeAssets/img/3dScanner_bb.png)
 #### Hardware Setup
 
 Below you'll see a few pictures of the fully assembled "rig". I let the PanaVise hold the servo/sensor assembly and zip-tied the arduinos to the top of the PanaVise. I used electrical tape to attach the PanaVise to the tripod.

@@ -10,10 +10,105 @@
 // - Supporting functions
 //
 // Functions to modify:
-// - Around line 240 starts the 3d init() function where the 3d geometry is
+// - Around line 340 starts the 3d init() function where the 3d geometry is
 //	 drawn, edit this to tweak the 3d output.
 
+// Serial functions
+//------------------------------------------------------------------------------
 
+var SerialConnection = function() {
+		this.connectionId = -1;
+		this.lineBuffer = "";
+		this.boundOnReceive = this.onReceive.bind(this);
+		this.boundOnReceiveError = this.onReceiveError.bind(this);
+		this.onConnect = new chrome.Event();
+		this.onReadLine = new chrome.Event();
+		this.onError = new chrome.Event();
+	};
+
+SerialConnection.prototype.onConnectComplete = function(connectionInfo) {
+	if (!connectionInfo) {
+		log("Connection failed.");
+		return;
+	}
+	this.connectionId = connectionInfo.connectionId;
+	serial.onReceive.addListener(this.boundOnReceive);
+	serial.onReceiveError.addListener(this.boundOnReceiveError);
+	this.onConnect.dispatch();
+};
+
+SerialConnection.prototype.onReceive = function(receiveInfo) {
+	if (receiveInfo.connectionId !== this.connectionId) {
+		return;
+	}
+	this.lineBuffer += ab2str(receiveInfo.data);
+	var index;
+	while ((index = this.lineBuffer.indexOf('\n')) >= 0) {
+		var line = this.lineBuffer.substr(0, index + 1);
+		this.onReadLine.dispatch(line);
+		this.lineBuffer = this.lineBuffer.substr(index + 1);
+	}
+};
+
+SerialConnection.prototype.onReceiveError = function(errorInfo) {
+	if (errorInfo.connectionId === this.connectionId) {
+		this.onError.dispatch(errorInfo.error);
+	}
+};
+
+SerialConnection.prototype.getDevices = function(callback) {
+	serial.getDevices(callback);
+};
+
+SerialConnection.prototype.connect = function(path) {
+	serial.connect(path, {
+		bitrate: 115200
+	}, this.onConnectComplete.bind(this));
+};
+
+SerialConnection.prototype.send = function(msg) {
+	if (this.connectionId < 0) {
+		throw 'Invalid connection';
+	}
+	serial.send(this.connectionId, str2ab(msg), function() {});
+};
+
+SerialConnection.prototype.disconnect = function() {
+	if (this.connectionId < 0) {
+		throw 'Invalid connection';
+	}
+};
+
+var connection = new SerialConnection();
+
+// Populate the list of available devices
+connection.getDevices(function(ports) {
+	// get drop-down port selector
+	var dropDown = document.querySelector('#port_list');
+	// clear existing options
+	dropDown.innerHTML = "";
+	// add new options
+	ports.forEach(function(port) {
+		var displayName = port.path;
+		if (!displayName) displayName = port.path;
+		var newOption = document.createElement("option");
+		newOption.text = displayName;
+		newOption.value = port.path;
+		dropDown.appendChild(newOption);
+	});
+	storage.get(null, function(prefs) {
+		if (prefs.lastDevice) {
+			dropDown.value = prefs.lastDevice;
+		}
+	});
+});
+
+connection.onConnect.addListener(function() {
+	// remove the connection drop-down
+	document.querySelector('#connect_box').style.display = 'none';
+	document.querySelector('#main_box').style.display = 'block';
+	sensorBox == true;
+});
 
 // Variables
 //------------------------------------------------------------------------------
@@ -35,7 +130,6 @@ var scalerValue = 1;
 var positionValue = 0;
 var mode = 0;
 var blob = '';
-var connection = new SerialConnection();
 
 var distanceValue;
 var points = new Array();
@@ -243,22 +337,24 @@ function animate() {
 function init() {
 	var array = CSVToArray(blob);
 	array.forEach(function(entry) {
-		var radius = entry[2];
-		var azimuth = entry[0];
-		var elevation = entry[1];
-		var elevation2 = ((90 - ((elevation - 500) * 0.09)) / 90) * (Math.PI / 2);
-		var azimuth2 = ((90 - ((azimuth - 1000) * 0.09)) / 90) * (Math.PI / 2);
-		var myX = (radius * Math.sin(elevation2) * Math.cos(azimuth2));
-		var myZ = (radius * Math.sin(elevation2) * Math.sin(azimuth2));
-		var myY = -(radius * Math.cos(elevation2));
-		//var cubeSize = ((entry[3] + entry[4]) / 2) * (elevation2 / elevation);
-		var cubeSize = 2;
-		var geometry2 = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-		var mesh2 = new THREE.Mesh(geometry2, material);
-		mesh2.position.x = myX;
-		mesh2.position.z = myZ;
-		mesh2.position.y = myY;
-		scene.add(mesh2);
+		if(!isNaN(entry[0]) || !isNaN(entry[1]) || !isNaN(entry[2])){
+			var radius = entry[2];
+			var azimuth = entry[0];
+			var elevation = entry[1];
+			var elevation2 = ((90 - ((elevation - 500) * 0.09)) / 90) * (Math.PI / 2);
+			var azimuth2 = ((90 - ((azimuth - 1000) * 0.09)) / 90) * (Math.PI / 2);
+			var myX = (radius * Math.sin(elevation2) * Math.cos(azimuth2));
+			var myZ = (radius * Math.sin(elevation2) * Math.sin(azimuth2));
+			var myY = -(radius * Math.cos(elevation2));
+			//var cubeSize = ((entry[3] + entry[4]) / 2) * (elevation2 / elevation);
+			var cubeSize = 2;
+			var geometry2 = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+			var mesh2 = new THREE.Mesh(geometry2, material);
+			mesh2.position.x = myX;
+			mesh2.position.z = myZ;
+			mesh2.position.y = myY;
+			scene.add(mesh2);
+		}
 	});
 	container = document.getElementById('container2');
 	container.appendChild(renderer.domElement);
@@ -278,100 +374,6 @@ function render() {
 }
 
 
-// Serial functions
-//------------------------------------------------------------------------------
-
-var SerialConnection = function() {
-		this.connectionId = -1;
-		this.lineBuffer = "";
-		this.boundOnReceive = this.onReceive.bind(this);
-		this.boundOnReceiveError = this.onReceiveError.bind(this);
-		this.onConnect = new chrome.Event();
-		this.onReadLine = new chrome.Event();
-		this.onError = new chrome.Event();
-	};
-
-SerialConnection.prototype.onConnectComplete = function(connectionInfo) {
-	if (!connectionInfo) {
-		log("Connection failed.");
-		return;
-	}
-	this.connectionId = connectionInfo.connectionId;
-	serial.onReceive.addListener(this.boundOnReceive);
-	serial.onReceiveError.addListener(this.boundOnReceiveError);
-	this.onConnect.dispatch();
-};
-
-SerialConnection.prototype.onReceive = function(receiveInfo) {
-	if (receiveInfo.connectionId !== this.connectionId) {
-		return;
-	}
-	this.lineBuffer += ab2str(receiveInfo.data);
-	var index;
-	while ((index = this.lineBuffer.indexOf('\n')) >= 0) {
-		var line = this.lineBuffer.substr(0, index + 1);
-		this.onReadLine.dispatch(line);
-		this.lineBuffer = this.lineBuffer.substr(index + 1);
-	}
-};
-
-SerialConnection.prototype.onReceiveError = function(errorInfo) {
-	if (errorInfo.connectionId === this.connectionId) {
-		this.onError.dispatch(errorInfo.error);
-	}
-};
-
-SerialConnection.prototype.getDevices = function(callback) {
-	serial.getDevices(callback);
-};
-
-SerialConnection.prototype.connect = function(path) {
-	serial.connect(path, {
-		bitrate: 115200
-	}, this.onConnectComplete.bind(this));
-};
-
-SerialConnection.prototype.send = function(msg) {
-	if (this.connectionId < 0) {
-		throw 'Invalid connection';
-	}
-	serial.send(this.connectionId, str2ab(msg), function() {});
-};
-
-SerialConnection.prototype.disconnect = function() {
-	if (this.connectionId < 0) {
-		throw 'Invalid connection';
-	}
-};
-
-// Populate the list of available devices
-connection.getDevices(function(ports) {
-	// get drop-down port selector
-	var dropDown = document.querySelector('#port_list');
-	// clear existing options
-	dropDown.innerHTML = "";
-	// add new options
-	ports.forEach(function(port) {
-		var displayName = port.path;
-		if (!displayName) displayName = port.path;
-		var newOption = document.createElement("option");
-		newOption.text = displayName;
-		newOption.value = port.path;
-		dropDown.appendChild(newOption);
-	});
-	storage.get(null, function(prefs) {
-		if (prefs.lastDevice) {
-			dropDown.value = prefs.lastDevice;
-		}
-	});
-});
-
-connection.onConnect.addListener(function() {
-	// remove the connection drop-down
-	document.querySelector('#connect_box').style.display = 'none';
-	document.querySelector('#main_box').style.display = 'block';
-	sensorBox == true;
-});
 
 // Supporting functions
 //------------------------------------------------------------------------------

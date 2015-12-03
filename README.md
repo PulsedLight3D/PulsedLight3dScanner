@@ -165,9 +165,9 @@ $('#exportCSV').click(function() {
 ## What's Next? How can you help!?
 Be sure to check back periodically as this is very much a work-in-progress. Some of the things on the list...
 
-1. Finish Documenting the code
-2. Export 3D Meshes
-3. Situational Awareness:  The goal here is the ability to take two scans from different positions, and have the scanner recognize its two positions relative to one another and the scanned environment
+1. Export 3D Meshes: We'd love some help with this! As best as we can tell, a nearest neighbor algorithm is going to end up as part of the mix.
+2. Situational Awareness:  The goal here is the ability to take two scans from different positions, and have the scanner recognize its two positions relative to one another and the scanned environment
+3. Keep tweaking and documenting the code
 
 If anyone has any ideas or code to contribute to this project, please do a pull or start an issue. Thank you so much in advance.
 

@@ -1,7 +1,6 @@
 # 3d Scanner: Point-Cloud Tool by PulsedLight Inc.
 
-![](readmeAssets/chair/chair_screenshot.png)
-![](readmeAssets/img/scanner.jpg)
+![](readmeAssets/img/coverShot.png)
 
 ***3d Scanner*** is a point-cloud creation tool created by [PulsedLight, Inc.](pulsedlight3d.com) for the research and experimentation in point-based robotic/computer visualizations. Using a distance sensor, 2 servos, 2 Arduinos (the second one simply provides power) a laptop and a Google Chrome Stand-alone app - point cloud data is captured and export as CSV, PNG and OBJ.
 
@@ -67,7 +66,7 @@ The PNG export is simply the export of the
 ```html
 <canvas></canvas>
 ```
-element that draws the false-color scan. It currently includes all blank margins.
+element that draws the false-color scan. It currently includes all blank margins (canvas size is 4000x4000). The pixels are plotted according to the microseconds, so if you scan from 500-1000 you will have blank margin from 0-499 and from 1001-4000.
 
 #### OBJ
 

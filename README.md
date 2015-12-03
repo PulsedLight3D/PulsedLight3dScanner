@@ -4,7 +4,8 @@
 
 ***3d Scanner*** is a point-cloud creation tool created by [PulsedLight, Inc.](pulsedlight3d.com) for the research and experimentation in point-based robotic/computer visualizations. Using a distance sensor, 2 servos, 2 Arduinos (the second one simply provides power) a laptop and a Google Chrome Stand-alone app - point cloud data is captured and export as CSV, PNG and OBJ.
 
-## TOC
+**Contents**
+
 - [Introduction](#introduction)
 - [How it Works](#how-it-works)
 - [What's Next? How Can you Help!](#whats-next-how-can-you-help)
@@ -49,15 +50,15 @@ The Elevation/Azimuth/Distance data is actually in radial geometry, for CSV and 
 #### CSV
 The CSV data is export as
 ```csv
-	//Azimuth Rotation, Elevation Rotation, Distance, steps between azimuth, steps between elevation
-	1500,500,60,4,4
+//Azimuth Rotation, Elevation Rotation, Distance, steps between azimuth, steps between elevation
+1500,500,60,4,4
 ```
 In the code you can easily modify this to export whatever you need (including header rows).
 
 #### PNG
 The PNG export is simply the export of the
 ```html
-	<canvas></canvas>
+<canvas></canvas>
 ```
 element that draws the false-color scan. It currently includes all blank margins.
 
@@ -70,6 +71,7 @@ The OBJ export creates a series of cubes positioned based on the Cartesian conve
 
 ## What's Next? How can you help!?
 Be sure to check back periodically as this is very much a work-in-progress. Some of the things on the list...
+
 1. Finish Documenting the code
 2. Export 3D Meshes
 3. Situational Awareness:  The goal here is the ability to take two scans from different positions, and have the scanner recognize its two positions relative to one another and the scanned environment

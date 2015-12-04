@@ -16,7 +16,7 @@
 // Variables
 //------------------------------------------------------------------------------
 
-// If you sensor is hanging down, this should be 4500, if it is right side up,
+// If your sensor is hanging down, this should be 4500, if it is right side up,
 // set to zero. This sets a value in the main serial loop
 var invertedSensorAdjustment = 4500;
 
@@ -275,7 +275,8 @@ $('#exportOBJ').click(function() {
 // 2D functions
 //------------------------------------------------------------------------------
 
-// Keep the 2D view updated as we
+// Keep the 2D view updated. We're constantly adding new objects to the two.js
+// canvas in the main serial loop
 interval(function() {
 	two.update();
 }, 300, 9999999999);
@@ -657,7 +658,7 @@ function CSVToArray(strData, strDelimiter) {
 		var strMatchedDelimiter = arrMatches[1];
 		// Check to see if the given delimiter has a length
 		// (is not the start of string) and if it matches
-		// field delimiter. If id does not, then we know
+		// field delimiter. If it does not, then we know
 		// that this delimiter is a row delimiter.
 		if (
 		strMatchedDelimiter.length && strMatchedDelimiter !== strDelimiter) {

@@ -39,14 +39,14 @@ More samples of exports can be viewed in [Appendix A](#appendix-a-scan-output).
 When you have followed the directions in "[Appendix B: Installation](#appendix-b-setup--installation)" you simply plug the Arduinos into the laptop and run the chrome app. Once you have selected and connected to the appropriate serial ports, you will see a blank screen with a set of options for the servos and "Export" on the right hand side of the screen.
 
 ### Servo Controls
-The servo controls are set in "microseconds" and you set the start and stop angle, the number of steps between the readings and the delay between each reading. The start and stop angles are fairly self explanatory - they control where the servo starts and where it finishes reading. The number of steps is also fairly straightforward - it controls how many positions to skip between readings, for example, if the steps is set to 30 and the start is 500 the first reading will be at 500 and the second reading will be at 530. The delay control is set in milliseconds, this controls how long the servo waits at its current position, if this is too low then the servos don't seem to go to they're position very accurately, at a certain point there's no added benefit to waiting as the servos are as accurate as they will get (in my case 20ms was perfect).
+The servo controls are set in "microseconds" and you set the start and stop angle, the number of steps between the readings and the delay between each reading. The start and stop angles are fairly self explanatory - they control where the servo starts and where it finishes reading. The number of steps is also fairly straightforward - it controls how many positions to skip between readings, for example, if the steps is set to 30 and the start is 500 the first reading will be at 500 and the second reading will be at 530. The delay control is set in milliseconds, this controls how long the servo waits at its current position, if this is too low, the servos don't seem to go to their position very accurately. After a certain quantity of delay there's no added benefit to waiting as the servos are as accurate as they will get (in my case 20ms was perfect).
 
 #### Modifying the Servo Controls
 
-If you sensor is hanging down like in the pictures, there's no need to modify anything. If however you'd rather it pivot upwards, you'll need to modify the "invertedSensorAdjustment" varible around line 118 in "main.js":
+If your sensor is hanging down like in the pictures, there's no need to modify anything. If however you'd rather it pivot upwards, you'll need to modify the "invertedSensorAdjustment" variable around line 118 in "main.js":
 
 ```javascript
-// If you sensor is hanging down, this should be 4500, if it is right side up,
+// If your sensor is hanging down, this should be 4500, if it is right side up,
 // set to zero. This sets a value in the main serial loop
 var invertedSensorAdjustment = 4500;
 ```
@@ -68,7 +68,7 @@ int getDistance(){
 ### PNG
 
 #### False Color Imagery
-Once you have your settings input, hit "Scan now" and a false-color 2D image will be produced. Each color corresponds directly to the distance, in my case the LIDAR-Lite reads in centimeters so each value corresponds to cm readings.
+Once you have your settings input, hit "Scan now" and a false-color 2D image will be produced. Each color corresponds directly to the distance. In my case the LIDAR-Lite reads in centimeters so each value corresponds to cm readings.
 
 The color is encoded using the standard RGB hex that is common in HTML. The color "Blue" looks like this #0000FF, which breaks down as Red = 0, Green = 0 and Blue = 255 (decimal). This would correspond to a reading of 255cm with the LIDAR-Lite. If we read 256cm the hex code would be #000100 (R = 0, G=1 (decimal), B = 0). In our example 255cm will be bright blue and 256 will be virtually black. For more information on the RGB color see this section of the wikipedia article on RGB: [https://en.wikipedia.org/wiki/RGB\_color\_model#Colors\_in\_web-page\_design](https://en.wikipedia.org/wiki/RGB_color_model#Colors_in_web-page_design)
 
@@ -131,7 +131,7 @@ This is the function to modify, if points, spheres or a mesh were desired instea
 
 
 ### CSV Export
-The CSV data is export as
+The CSV data is exported as
 
 ```csv
 //Azimuth Rotation, Elevation Rotation, Distance, steps between azimuth, steps between elevation
@@ -180,10 +180,13 @@ If anyone has any ideas or code to contribute to this project, please do a pull 
 
 ![](readmeAssets/chair/chair_crop.png)
 *PNG output*
+<br>
 ![](readmeAssets/chair/chair3d.jpg)
 *3D OBJ export, rendered in 3d modeling software*
+<br>
 ![](readmeAssets/chair/chair_setup.jpg)
 *Photo of scene being scanned*
+<br>
 #### Export files
 - [Chair OBJ](readmeAssets/chair/chair.obj)
 - [Chair PNG](readmeAssets/chair/chair.png)
@@ -192,10 +195,13 @@ If anyone has any ideas or code to contribute to this project, please do a pull 
 ### Backdoor
 ![](readmeAssets/backdoor/backdoor_crop.png)
 *PNG output*
+<br>
 ![](readmeAssets/backdoor/backdoor3d.jpg)
 *3D OBJ export, rendered in 3d modeling software*
+<br>
 ![](readmeAssets/backdoor/backdoor_setup.jpg)
 *Photo of scene being scanned*
+<br>
 #### Export files
 - [Backdoor OBJ](readmeAssets/backdoor/backdoor.obj)
 - [Backdoor PNG](readmeAssets/backdoor/backdoor.png)
@@ -213,10 +219,11 @@ Here is the list of hardware I used.
 - A camera tripod for positioning the scanner
 - Electrical tape
 - Two long USB cables!
+
 #### Arduino Setup
 ![](readmeAssets/img/3dScanner_bb.png)
 
-To install the Arduino software, open "arduino/PulsedLight3dScanner/PulsedLight3dScanner.ino" and install it to the main Arduino. You will need to [install the "LIDARLite" Arduino library](https://github.com/PulsedLight3D/LIDARLite_v2_Arduino_Library).
+To install the Arduino software, open "arduino/PulsedLight3dScanner/PulsedLight3dScanner.ino" and upload it to the main Arduino. You will need to [install the "LIDARLite" Arduino library](https://github.com/PulsedLight3D/LIDARLite_v2_Arduino_Library).
 
 #### Hardware Setup
 
@@ -229,10 +236,10 @@ The software side is relatively straight forward:
 
 1. Download and decompress this repository
 2. Install Google Chrome
-2. Type "chrome://extensions" into the URL
+2. Type "chrome://extensions" into the URL address box
 3. Make sure the "Developer mode" checkbox is checked on the top right of the screen
-4. You will see a button right under the "Extensions" heading called "Load unpacked extension", click that button
-5. Select the repository folder, it will now "install"
+4. Click the button right under the "Extensions" heading called "Load unpacked extension"
+5. Select the repository folder. It will now "install"
 6. You can now hit launch from the extension page, or navigate to "chrome://apps" and launch it there.
 7. On launching you will see a screen to "choose serial port" select your Arduino and click "connect"
 

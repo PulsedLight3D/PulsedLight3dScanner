@@ -174,7 +174,7 @@ Below are the results of variations in the steps and delay settings while scanni
 
 ### Delay Variation
 ![](examples_and_assets/readMeImg/guitar_delay_test.png)
-*The results of changing the delay between readings. *
+*The results of changing the delay between readings.*
 
 
 ## What's Next? How can you help!?
@@ -198,10 +198,10 @@ The scan below is at the highest possible resolution and does not show typical r
 ![](examples_and_assets/guitar/guitar_crop.jpg)
 *PNG output*
 <p></p>
-![](examples_and_assets/chair/guitar3d.jpg)
+![](examples_and_assets/guitar/guitar3d.jpg)
 *3D OBJ export, rendered in 3d modeling software*
 <p></p>
-![](examples_and_assets/chair/guitar_setup.jpg)
+![](examples_and_assets/guitar/guitar_setup.jpg)
 *Photo of scene being scanned*
 <p></p>
 #### Export files

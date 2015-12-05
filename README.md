@@ -94,7 +94,7 @@ Around line 337 in "main.js" the three.js init() function starts, if you modify 
 Here is the function as is:
 
 ```javascript
-function init() {
+function init(renderer, scene) {
 	var array = CSVToArray(blob);
 	array.forEach(function(entry) {
 		if(!isNaN(entry[0]) || !isNaN(entry[1]) || !isNaN(entry[2])){

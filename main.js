@@ -228,6 +228,7 @@ cancelBtn.onclick = function() {
 clearPtsBtn.onclick = function() {
 	blob = '';
 	two.clear();
+
 }
 
 $('#exportCSV').click(function() {
@@ -262,13 +263,18 @@ $('#exportPNG').click(function() {
 	// window.open(canvas.toDataURL("image/png"));
 });
 $('#exportOBJ').click(function() {
+	var renderer = new THREE.WebGLRenderer({
+		antialias: false
+	});
+	var scene = new THREE.Scene();
 	var container = document.getElementById('container2'),
 		renderer, scene;
+
 	var container;
-	var scene, renderer;
-	init();
-	render();
-	exportToObj();
+	var scene, scene;
+	init(renderer, scene);
+	render(renderer, scene);
+	exportToObj(renderer, scene);
 });
 
 
@@ -303,20 +309,18 @@ var two = new Two(params).appendTo(elem);
 // 3D functions
 //------------------------------------------------------------------------------
 
-var scene = new THREE.Scene();
+
 var size = 200;
 var step = 10;
 var geometry = new THREE.BoxGeometry(2, 2, 2);
 var material = new THREE.MeshLambertMaterial({
 	color: 0xffffff
 });
-var renderer = new THREE.WebGLRenderer({
-	antialias: false
-});
+
 var camera = new THREE.PerspectiveCamera(20, 1400 / 900, 1, 1000);
 
 
-function exportToObj() {
+function exportToObj(renderer, scene) {
 	var exporter = new THREE.OBJExporter();
 	var result = exporter.parse(scene);
 	var blob3D = result.split('\n').join('\n');
@@ -330,6 +334,8 @@ function exportToObj() {
 		});
 		writeFileEntry(writableEntry, blobSave, function(e) {});
 	});
+	delete renderer.domElement;
+	delete scene.domElement;
 }
 
 function animate() {
@@ -339,7 +345,9 @@ function animate() {
 // This is where the geometry for the 3D export is drawn!, if you were going to
 // change to a mesh or dots or simply points, change the values inside this
 // function
-function init() {
+function init(renderer, scene) {
+
+
 	var array = CSVToArray(blob);
 	array.forEach(function(entry) {
 		if(!isNaN(entry[0]) || !isNaN(entry[1]) || !isNaN(entry[2])){
@@ -366,6 +374,7 @@ function init() {
 			scene.add(mesh2);
 		}
 	});
+
 	container = document.getElementById('container2');
 	container.appendChild(renderer.domElement);
 	window.addEventListener('resize', onWindowResize, false);
@@ -379,7 +388,7 @@ function onWindowResize() {
 	render();
 }
 
-function render() {
+function render(renderer, scene) {
 	renderer.render(scene, camera);
 }
 

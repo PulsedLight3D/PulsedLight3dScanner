@@ -8,6 +8,7 @@
 
 - [Introduction](#introduction)
 - [How it Works](#how-it-works)
+- [Experiments](#experiments)
 - [What's Next? How Can you Help!](#whats-next-how-can-you-help)
 - [Appendix A: Scanner Output](#appendix-a-scan-output)
 - [Appendix B: Setup & Installation](#appendix-b-setup--installation)
@@ -169,7 +170,7 @@ Below are the results of variations in the steps and delay settings while scanni
 
 ### Notes
 - Each scan used the same area (Azimuth: 1200-1500, Elevation: 640-940)
-- When using steps 1 & 2, multiple scans were required and the app crashed when attempting to do an OBJ export of the full image. For 2 steps, 2 half scans were created and assembled. For 1 step, 10 scans were created and assembled. 
+- When using steps 1 & 2, multiple scans were required and the app crashed when attempting to do an OBJ export of the full image. For 2 steps, 2 half scans were created and assembled. For 1 step, 10 scans were created and assembled.
 
 ### Delay Variation
 ![](examples_and_assets/readMeImg/guitar_delay_test.png)

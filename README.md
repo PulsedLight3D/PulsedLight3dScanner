@@ -110,8 +110,8 @@ function init() {
 
 			// Use this line if you want the size of the cubes to be a function of the
 			// steps between points
-			// var cubeSize = ((entry[3] + entry[4]) / 2) * (elevation2 / elevation);
-			var cubeSize = 2;
+			var cubeSize = entry[3]/8;
+			// var cubeSize = 2;
 			var geometry2 = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
 			var mesh2 = new THREE.Mesh(geometry2, material);
 			mesh2.position.x = myX;
@@ -167,6 +167,10 @@ Below are the results of variations in the steps and delay settings while scanni
 ![](examples_and_assets/readMeImg/guitar_step_test.png)
 *The results of changing the steps between readings.*
 
+### Notes
+- Each scan used the same area (Azimuth: 1200-1500, Elevation: 640-940)
+- When using steps 1 & 2, multiple scans were required and the app crashed when attempting to do an OBJ export of the full image. For 2 steps, 2 half scans were created and assembled. For 1 step, 10 scans were created and assembled. 
+
 ### Delay Variation
 ![](examples_and_assets/readMeImg/guitar_delay_test.png)
 *The results of changing the delay between readings. *
@@ -200,7 +204,7 @@ The scan below is at the highest possible resolution and does not show typical r
 *Photo of scene being scanned*
 <p></p>
 #### Export files
-Review the "examples_and_assets/guitar" folder for all of the exports. There are about 36 files of raw data in that folder. 
+Review the "examples_and_assets/guitar" folder for all of the exports. There are about 36 files of raw data in that folder.
 
 ### Chair
 

@@ -196,6 +196,7 @@ If anyone has any ideas or code to contribute to this project, please do a pull 
 The scan below is at the highest possible resolution and does not show typical results. Review the contents of the "examples_and_assets/guitar/" folders for other scan settings, or review ["Experiments"](#experiments) above.
 
 ![](examples_and_assets/guitar/guitar_crop.jpg)
+
 *PNG output*
 <p></p>
 ![](examples_and_assets/guitar/guitar3d.jpg)

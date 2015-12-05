@@ -356,8 +356,8 @@ function init() {
 
 			// Use this line if you want the size of the cubes to be a function of the
 			// steps between points
-			// var cubeSize = ((entry[3] + entry[4]) / 2) * (elevation2 / elevation);
-			var cubeSize = 2;
+			var cubeSize = entry[3]/8;
+			//var cubeSize = 2;
 			var geometry2 = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
 			var mesh2 = new THREE.Mesh(geometry2, material);
 			mesh2.position.x = myX;

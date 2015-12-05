@@ -1,6 +1,6 @@
 # PulsedLight 3d Scanner: Point-Cloud Tool
 
-![](readmeAssets/img/coverShot.png)
+![](examples_and_assets/readMeImg/coverShot.png)
 
 ***PulsedLight 3d Scanner*** is a point-cloud creation tool created by [PulsedLight, Inc.](pulsedlight3d.com) for the research and experimentation in point-based robotic/computer visualizations. Using a distance sensor, 2 servos, 2 Arduinos (the second one simply provides power) a laptop and a Google Chrome Stand-alone app - point cloud data is captured and export as CSV, PNG and OBJ.
 
@@ -24,7 +24,7 @@ We've been able to create a  2 servo system using LIDAR-Lite v2 sensor that capt
 
 Here are a couple samples of the output (and a photo of the scanned scene):
 
-![](readmeAssets/img/scanSample.jpg)
+![](examples_and_assets/readMeImg/scanSample.jpg)
 
 More samples of exports can be viewed in [Appendix A](#appendix-a-scan-output).
 
@@ -159,7 +159,17 @@ $('#exportCSV').click(function() {
 });
 ```
 
+## Experiments
 
+Below are the results of variations in the steps and delay settings while scanning at the scene from ["Appendix A: Scan Output - Guitar"](#guitar).
+
+### Step Variation
+![](examples_and_assets/readMeImg/guitar_step_test.png)
+*The results of changing the steps between readings.*
+
+### Delay Variation
+![](examples_and_assets/readMeImg/guitar_delay_test.png)
+*The results of changing the delay between readings. *
 
 
 ## What's Next? How can you help!?
@@ -176,36 +186,52 @@ If anyone has any ideas or code to contribute to this project, please do a pull 
 ----
 
 ## Appendix A: Scan Output
+
+### Guitar
+The scan below is at the highest possible resolution and does not show typical results. Review the contents of the "examples_and_assets/guitar/" folders for other scan settings, or review ["Experiments"](#experiments) above.
+
+![](examples_and_assets/guitar/guitar_crop.jpg)
+*PNG output*
+<p></p>
+![](examples_and_assets/chair/guitar3d.jpg)
+*3D OBJ export, rendered in 3d modeling software*
+<p></p>
+![](examples_and_assets/chair/guitar_setup.jpg)
+*Photo of scene being scanned*
+<p></p>
+#### Export files
+Review the "examples_and_assets/guitar" folder for all of the exports. There are about 36 files of raw data in that folder. 
+
 ### Chair
 
-![](readmeAssets/chair/chair_crop.png)
+![](examples_and_assets/chair/chair_crop.png)
 *PNG output*
 <p></p>
-![](readmeAssets/chair/chair3d.jpg)
+![](examples_and_assets/chair/chair3d.jpg)
 *3D OBJ export, rendered in 3d modeling software*
 <p></p>
-![](readmeAssets/chair/chair_setup.jpg)
+![](examples_and_assets/chair/chair_setup.jpg)
 *Photo of scene being scanned*
 <p></p>
 #### Export files
-- [Chair OBJ](readmeAssets/chair/chair.obj)
-- [Chair PNG](readmeAssets/chair/chair.png)
-- [Chair CSV](readmeAssets/chair/chair.csv)
+- [Chair OBJ](examples_and_assets/chair/chair.obj)
+- [Chair PNG](examples_and_assets/chair/chair.png)
+- [Chair CSV](examples_and_assets/chair/chair.csv)
 
 ### Backdoor
-![](readmeAssets/backdoor/backdoor_crop.png)
+![](examples_and_assets/backdoor/backdoor_crop.png)
 *PNG output*
 <p></p>
-![](readmeAssets/backdoor/backdoor3d.jpg)
+![](examples_and_assets/backdoor/backdoor3d.jpg)
 *3D OBJ export, rendered in 3d modeling software*
 <p></p>
-![](readmeAssets/backdoor/backdoor_setup.jpg)
+![](examples_and_assets/backdoor/backdoor_setup.jpg)
 *Photo of scene being scanned*
 <p></p>
 #### Export files
-- [Backdoor OBJ](readmeAssets/backdoor/backdoor.obj)
-- [Backdoor PNG](readmeAssets/backdoor/backdoor.png)
-- [Backdoor CSV](readmeAssets/backdoor/backdoor.csv)
+- [Backdoor OBJ](examples_and_assets/backdoor/backdoor.obj)
+- [Backdoor PNG](examples_and_assets/backdoor/backdoor.png)
+- [Backdoor CSV](examples_and_assets/backdoor/backdoor.csv)
 
 ----
 
@@ -221,7 +247,7 @@ Here is the list of hardware I used.
 - Two long USB cables!
 
 #### Arduino Setup
-![](readmeAssets/img/3dScanner_bb.png)
+![](examples_and_assets/readMeImg/3dScanner_bb.png)
 
 To install the Arduino software, open "arduino/PulsedLight3dScanner/PulsedLight3dScanner.ino" and upload it to the main Arduino. You will need to [install the "LIDARLite" Arduino library](https://github.com/PulsedLight3D/LIDARLite_v2_Arduino_Library).
 
